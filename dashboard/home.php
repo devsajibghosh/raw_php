@@ -24,8 +24,16 @@ session_start();
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="card login_card mt-5">
-          <div class="card-header">
+          <div class="card-header d-flex justify-content-center">
             <h3 class="text-center text-primary fw-bolder font-monospace">Dashboard<i class="dot text-dark">__</i></h3>
+              <!-- logout btn -->
+            <button type="button" class="btn btn-danger btn-sm position-relative">
+              <a href="logout.php" class="text-white fs-5">Logout</a>
+              <span class="position-absolute top-0 start-100 translate-middle p-1 bg-success border border-light rounded-circle">
+                <span class="visually-hidden">New alerts</span>
+              </span>
+            </button>
+
           </div>
           <div class="card-body body_edit">
               <div class="">
