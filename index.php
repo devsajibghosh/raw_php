@@ -1,3 +1,7 @@
+<main?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +18,7 @@
 </head>
 
 <body class="background-animation">
-<main class="">
+  
   <div class="container cont_main">
     <div class="row justify-content-center">
       <div class="col-md-6">
@@ -26,11 +30,12 @@
             <form>
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" placeholder="example@gmail.com">
+                <input type="email" class="form-control" placeholder="example@gmail.com" value="<?= (isset($_SESSION['send_old_email'])) ? $_SESSION['send_old_email'] : '';unset($_SESSION['send_old_email']); ?>">
               </div>
+
               <div class="mb-3">
                 <label class="form-label">Password</label>
-                <input type="password" class="form-control" placeholder="type your password">
+                <input type="password" class="form-control" placeholder="type your password" value="<?= (isset($_SESSION['send_old_password'])) ? $_SESSION['send_old_password'] : '';unset($_SESSION['send_old_password']); ?>">
               </div>
 
               <div class="mb-3">

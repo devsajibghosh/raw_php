@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,31 +20,44 @@
 
 <body class="bg-dark">
 
-  <div class="container mt-5 ">
+  <div class="container mt-5">
     <div class="row justify-content-center">
       <div class="col-md-6">
+        <!-- error mseg start -->
+        <?php if (isset($_SESSION['error_msg'])) : ?>
+          <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+            <strong class="text-danger"><?= $_SESSION['error_msg'];  ?></strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php endif;
+        unset($_SESSION['error_msg']); ?>
+        <!-- error msg end  -->
+
         <div class="card">
           <div class="card-body">
             <h1 class="text-center fw-bolder text-warning fs-3">Register...</h1>
-            <form action="#">
+            <form action="registration_post.php" method="post">
+
               <div class="mb-3">
                 <label for="inputName" class="form-label">Full Name</label>
-                <input type="text" class="form-control" id="inputName" placeholder="Enter your name">
+                <input type="text" class="form-control  <?= (isset($_SESSION['name_error'])) ? 'is-invalid' : ' ' ;unset($_SESSION['name_error']);  ?>" placeholder="Enter your name" name="name" value="<?= (isset($_SESSION['old_name'])) ? $_SESSION['old_name'] : '';unset($_SESSION['old_name']); ?>" >
               </div>
+
               <div class="mb-3">
-                <label for="inputEmail" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="inputEmail" placeholder="name@example.com" required>
+                <label class="form-label">Email address</label>
+                <input type="email" class="form-control" placeholder="name@example.com" name="email" value="<?= (isset($_SESSION['old_email'])) ? $_SESSION['old_email'] : '';unset($_SESSION['old_email']); ?>">
               </div>
+
               <div class="mb-3">
                 <label for="inputPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputPassword" placeholder="Password" required>
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
               </div>
+
               <div class="mb-3">
                 <label for="confirmPassword" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" name="confirm_password">
               </div>
-              <div class="checkbox mb-3">
-              </div>
+
               <div class="mb-3 d-flex justify-content-between">
                 <span><a href="../index.php" class="text-decoration-none fw-bold text-dark ">📲Login<strong class="dot text-warning">__</strong></a></span>
                 <button class="btn btn-md btn-warning text-white px-3 fs-6 fw-bold" type="submit">Sign Up<i class="dot">🧬</i></button>
